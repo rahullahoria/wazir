@@ -6,9 +6,9 @@ include 'db.php';
 require 'Slim/Slim.php';
 
 
-//files resource
-require_once "resources/files/saveFile.php";
-require_once "resources/files/getFile.php";
+//feedbacks resource
+require_once "resources/feedbacks/saveFeedbacks.php";
+require_once "resources/feedbacks/getFeedbacks.php";
 
 //app
 require_once "app.php";

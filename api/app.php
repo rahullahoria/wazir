@@ -19,8 +19,8 @@ $app->response->headers->set('Content-Type', 'application/json');
 
 /* Starting routes */
 
-$app->get('/files/:username/:fileId','getFile');
-$app->post('/files/:username', 'saveFile');
+$app->get('/feedbacks/:user_id/:Id','getFeedbacks');
+$app->post('/feedbacks/:user_id/:id', 'saveFeedback');
 
 /* Ending Routes */
 
