@@ -12,7 +12,7 @@ function saveFeedback($userId, $objectId){
     $feedback = json_decode($request->getBody());
 
 
-    $sql = "INSERT INTO `wazir`.`feedback` (
+    $sql = "INSERT INTO `wazir`.`feedbacks` (
 
                     `object_id` ,
                     `user_id` ,
