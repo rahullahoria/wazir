@@ -9,7 +9,7 @@
 
 function getFeedbacks($userId, $objectId){
 
-    $sql = "SELECT * FROM feedbacks WHERE object_id=:id and user_id =:user_id ";
+    $sql = "SELECT * FROM feedbacks WHERE object_id=:id and user_id =:user_id ORDER BY `id` DESC ";
 
     try {
         $db = getDB();
