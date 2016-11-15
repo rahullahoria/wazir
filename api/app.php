@@ -20,6 +20,7 @@ $app->response->headers->set('Content-Type', 'application/json');
 /* Starting routes */
 
 $app->get('/feedbacks/:user_id/:Id','getFeedbacks');
+$app->get('/feedbacks/:user_id/:Id/count','getFeedbackCounts');
 $app->post('/feedbacks/:user_id/:id', 'saveFeedback');
 
 /* Ending Routes */
