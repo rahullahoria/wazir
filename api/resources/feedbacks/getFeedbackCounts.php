@@ -7,7 +7,7 @@
  */
 
 
-function getFeedbacks($userId, $objectId){
+function getFeedbackCounts($userId, $objectId){
 
     $sql = "SELECT count(*) AS count, type FROM feedbacks WHERE object_id=:id GROUP BY type ";
 
