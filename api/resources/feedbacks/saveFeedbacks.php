@@ -11,20 +11,23 @@ function saveFeedback($userId, $objectId){
     $request = \Slim\Slim::getInstance()->request();
     $feedback = json_decode($request->getBody());
 
+    $feedback->type =isset($feedback->type)?$feedback->type:'suggestion';
 
     $sql = "INSERT INTO `wazir`.`feedbacks` (
 
                     `object_id` ,
                     `user_id` ,
                     `feedback`,
+                    `type`,
                     digieye_user_id
                     )
                     VALUES (
-                    :object_id, :user_id, :feedback,:digieye_user_id
+                    :object_id, :user_id, :feedback,:type,:digieye_user_id
                     );";
 
     try {
 
+        //'complain','suggestion','appreciation','marvelous'
         $db = getDB();
         $stmt = $db->prepare($sql);
 
@@ -32,6 +35,7 @@ function saveFeedback($userId, $objectId){
         $stmt->bindParam("user_id", $userId);
 
         $stmt->bindParam("feedback", $feedback->feedback);
+        $stmt->bindParam("type", $feedback->type);
         $stmt->bindParam("digieye_user_id", $feedback->digieye_user_id);
 
 
