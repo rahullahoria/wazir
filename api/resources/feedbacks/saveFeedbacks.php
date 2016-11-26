@@ -13,18 +13,8 @@ function saveFeedback($userId, $objectId){
 
     $feedback->type =isset($feedback->type)?$feedback->type:'suggestion';
 
-    $sql = "INSERT INTO `wazir`.`feedbacks` (
-
-
-                    `object_id` ,
-                    `user_id` ,
-                    `feedback`,
-                    `type`,
-                    digieye_user_id
-                    )
-                    VALUES (
-                    :object_id, :user_id, :feedback,:type,:digieye_user_id
-                    );";
+    $sql = "INSERT INTO `wazir`.`feedbacks` ( object_id, user_id, feedback, type, digieye_user_id )
+                    VALUES (:object_id, :user_id, :feedback, :type, :digieye_user_id );";
 
     try {
 
