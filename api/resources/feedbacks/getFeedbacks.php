@@ -10,7 +10,7 @@
 function getFeedbacks($userId, $objectId){
 
     $sql = "SELECT * FROM feedbacks WHERE object_id=:id and user_id =:user_id ORDER BY `id` DESC ";
-
+    $namesSql = "SELECT name FROM users WHERE id = :id";
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
@@ -20,6 +20,16 @@ function getFeedbacks($userId, $objectId){
 
         $stmt->execute();
         $feedbacks = $stmt->fetchAll(PDO::FETCH_OBJ);
+        foreach ($feedbacks as $key => $feedback) {
+            $id = $feedback->user_id;
+
+            $stmt = $db->prepare($namesSql);
+        
+            $stmt->bindParam("id", $id);
+            
+            $stmt->execute();
+            $feedback->name = $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
 
 
         $db = null;
