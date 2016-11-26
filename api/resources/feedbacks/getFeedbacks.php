@@ -28,7 +28,7 @@ function getFeedbacks($userId, $objectId){
             $stmt->bindParam("id", $id);
             
             $stmt->execute();
-            $name = $stmt->fetchAll(PDO::FETCH_ASSOC)
+            $name = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $feedback->name = $name[0]['name'];
         }
 
