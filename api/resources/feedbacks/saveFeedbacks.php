@@ -14,13 +14,14 @@ function saveFeedback($userId, $objectId){
 
     $sql = "INSERT INTO `wazir`.`feedbacks` (
 
-                    `object_id` ,
-                    `user_id` ,
-                    `feedback`,
+                    object_id ,
+                    user_id ,
+                    feedback,
+                    type,
                     digieye_user_id
                     )
                     VALUES (
-                    :object_id, :user_id, :feedback,:digieye_user_id
+                    :object_id, :user_id, :feedback, :type, :digieye_user_id
                     );";
 
     try {
@@ -32,6 +33,7 @@ function saveFeedback($userId, $objectId){
         $stmt->bindParam("user_id", $userId);
 
         $stmt->bindParam("feedback", $feedback->feedback);
+        $stmt->bindParam("type", $feedback->type);
         $stmt->bindParam("digieye_user_id", $feedback->digieye_user_id);
 
 
