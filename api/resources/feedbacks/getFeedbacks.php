@@ -16,7 +16,6 @@ function getFeedbacks($userId, $objectId){
         $stmt = $db->prepare($sql);
 
         $stmt->bindParam("id", $objectId);
-        $stmt->bindParam("user_id", $userId);
 
         $stmt->execute();
         $feedbacks = $stmt->fetchAll(PDO::FETCH_OBJ);
