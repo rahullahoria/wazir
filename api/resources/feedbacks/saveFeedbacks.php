@@ -28,7 +28,9 @@ function saveFeedback($userId, $objectId){
         $stmt->bindParam("mobile", $feedback->number);
         $stmt->execute();
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        var_dump($data);die();
         $newUserId = $data['id'];
+        var_dump(expression)
         if(!isset($newUserId)){
             $stmt = $db->prepare($sqlInsertUser);
             $stmt->bindParam("name", $feedback->name);
