@@ -35,16 +35,18 @@ function saveFeedback($userId, $objectId){
             $stmt->execute();
             $newUserId = $db->lastInsertId();
         }
-        else $newUserId = $data[0]['id'];
-        $stmt = $db->prepare($sql);
+        else {
+            $newUserId = $data[0]['id'];
+        }
+        $stmt2 = $db->prepare($sql);
 
-        $stmt->bindParam("object_id", $objectId);
-        $stmt->bindParam("user_id", $newUserId);
+        $stmt2->bindParam("object_id", $objectId);
+        $stmt2->bindParam("user_id", $newUserId);
 
-        $stmt->bindParam("feedback", $feedback->feedback);
-        $stmt->bindParam("type", $feedback->type);
-        $stmt->bindParam("digieye_user_id", $feedback->digieye_user_id);
-        $stmt->execute();
+        $stmt2->bindParam("feedback", $feedback->feedback);
+        $stmt2->bindParam("type", $feedback->type);
+        $stmt2->bindParam("digieye_user_id", $feedback->digieye_user_id);
+        $stmt2->execute();
 
         $id = $db->lastInsertId();
         $feedback->id = $id;
