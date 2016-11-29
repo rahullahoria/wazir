@@ -27,18 +27,15 @@ function saveFeedback($userId, $objectId){
         $stmt->bindParam("name", $feedback->name);
         $stmt->bindParam("mobile", $feedback->number);
         $stmt->execute();
-        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($data);die();
-        $newUserId = $data['id'];
-       
-        if(!isset($newUserId)){
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);       
+        if(!isset($data)){
             $stmt = $db->prepare($sqlInsertUser);
             $stmt->bindParam("name", $feedback->name);
             $stmt->bindParam("mobile", $feedback->number);
             $stmt->execute();
             $newUserId = $db->lastInsertId();
         }
-
+        else $newUserId = $data[0]['id'];
         $stmt = $db->prepare($sql);
 
         $stmt->bindParam("object_id", $objectId);
