@@ -17,7 +17,7 @@ function saveFeedback($userId, $objectId){
     $sql = "INSERT INTO `wazir`.`feedbacks` ( object_id, user_id, feedback, type, digieye_user_id )
                     VALUES (:object_id, :user_id, :feedback, :type, :digieye_user_id );";
     try {
-
+        $db = getDB();
         $stmt = $db->prepare($sql);
 
         $stmt->bindParam("object_id", $objectId);
