@@ -12,6 +12,7 @@ function saveFeedback($userId, $objectId){
     $feedback = json_decode($request->getBody());
 
     $feedback->type = isset($feedback->type)?$feedback->type:'suggestion';
+    $newUserId = isset($feedback->user_id)?$feedback->user_id:$userId;
 
     $sql = "INSERT INTO `wazir`.`feedbacks` ( object_id, user_id, feedback, type, digieye_user_id )
                     VALUES (:object_id, :user_id, :feedback, :type, :digieye_user_id );";
@@ -20,7 +21,7 @@ function saveFeedback($userId, $objectId){
         $stmt = $db->prepare($sql);
 
         $stmt->bindParam("object_id", $objectId);
-        $stmt->bindParam("user_id", $userId);
+        $stmt->bindParam("user_id", $newUserId);
 
         $stmt->bindParam("feedback", $feedback->feedback);
         $stmt->bindParam("type", $feedback->type);
