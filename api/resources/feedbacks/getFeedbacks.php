@@ -10,7 +10,7 @@
 function getFeedbacks($userId, $objectId){
 
     $sql = "SELECT * FROM feedbacks WHERE object_id=:id ORDER BY `id` DESC ";
-    $namesSql = "SELECT name FROM users WHERE id = :id";
+    $namesSql = "SELECT name FROM bluenet_v3.users WHERE id = :id";
     try {
         $db = getDB();
         $stmt = $db->prepare($sql);
